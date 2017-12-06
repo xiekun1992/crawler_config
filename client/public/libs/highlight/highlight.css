@@ -1,0 +1,10 @@
+*.highlight{
+	box-shadow: 0 0 0 4px #41b346 !important;
+}
+*.xhighlight{
+	background-color: #fd6459bf !important;
+	box-shadow: 0 0 0 4px #f44336 !important;
+}
+*{
+	cursor: pointer;
+}

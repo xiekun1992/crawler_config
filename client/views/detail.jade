@@ -1,0 +1,11 @@
+extends layout
+
+block content
+
+  iframe(id="content", srcdoc=html).detail-frame
+  div(id="result", class="result")
+    button(id="save") save
+    div(id="text", class="text-group")
+
+block scripts
+  script(src="/js/detail.js")

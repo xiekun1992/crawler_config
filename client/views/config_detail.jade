@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  
+  div.col-sm-6.col-sm-offset-3
+    div.form-group
+      label.col-sm-1.control-label url
+      div.col-sm-11
+        p.form-control-static= config.url
+    div.form-group
+      label.col-sm-1.control-label status
+      div.col-sm-11
+        p.form-control-static
+          case config.status
+            when 0
+              span.label.label-default unknown
+            when 1
+              span.label.label-success valid
+            when 2
+              span.label.label-danger invalid
+    div.form-group
+      label.col-sm-1.control-label rules
+      div.col-sm-11
+        ul
+          each r in rules
+            li.break-all.mt10= r.rule
