@@ -2,7 +2,7 @@ var { Rule, sequelize } = require('./model');
 
 function batchCreateByDocumentId(documentId, rules){
   let promiseArr = [];
-  sequelize.transaction(t=>{
+  return sequelize.transaction(t=>{
     for(let rule of rules){
       promiseArr.push(Rule.create({
         rule,

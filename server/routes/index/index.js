@@ -18,7 +18,7 @@ router.post('/crawl', async (req, res, next)=>{
   res.redirect('/');
 });
 
-router.get('/detail', function(req, res, next){
+router.get('/details', function(req, res, next){
   configDao.findOne(req.query.id).then(data=>{
     let dom = new JSDOM(data.html);
     dom.window.document.body.innerHTML += `

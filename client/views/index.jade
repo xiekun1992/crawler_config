@@ -34,7 +34,7 @@ block content
                       div.label.label-danger invalid
                 td= c.createdAt.toLocaleString()
                 td
-                  a(href="/detail?id=" + c.id, target="_self", class="btn btn-default btn-sm") config rule
+                  a(href="/details?id=" + c.id, target="_self", class="btn btn-default btn-sm") config rule
                   &nbsp;&nbsp;
                   a(href="javascript:void(0)", class="btn btn-danger btn-sm", v-on:click="removeConfig(#{c.id})") {{message}}
 
