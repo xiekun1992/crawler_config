@@ -1,7 +1,7 @@
 (function(){
 	var link = document.createElement('link');
 	link.rel = 'stylesheet';
-	link.href='http://192.168.245.128:3000/libs/highlight/highlight.css';
+	link.href='/libs/highlight/highlight.css';
 	document.body.appendChild(link);
 
 	var xPathRule = [];

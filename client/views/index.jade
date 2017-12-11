@@ -20,22 +20,23 @@ block content
       tbody#configTable
         if configs && configs.length > 0
           each c in configs
-            tr
-              td= c.id
-              td= c.url
-              td
-                case c.status
-                  when 0
-                    div.label.label-default unknown
-                  when 1
-                    div.label.label-success valid
-                  when 2
-                    div.label.label-danger invalid
-              td= c.createdAt.toLocaleString()
-              td
-                a(href="/detail?id=" + c.id, target="_self", class="btn btn-default btn-sm") config rule
-                &nbsp;&nbsp;
-                a(href="javascript:void(0)", class="btn btn-danger btn-sm", v-on:click="removeConfig(#{c.id})") {{message}}
+            if c.isDelete == 0
+              tr
+                td= c.id
+                td= c.url
+                td
+                  case c.status
+                    when 0
+                      div.label.label-default unknown
+                    when 1
+                      div.label.label-success valid
+                    when 2
+                      div.label.label-danger invalid
+                td= c.createdAt.toLocaleString()
+                td
+                  a(href="/detail?id=" + c.id, target="_self", class="btn btn-default btn-sm") config rule
+                  &nbsp;&nbsp;
+                  a(href="javascript:void(0)", class="btn btn-danger btn-sm", v-on:click="removeConfig(#{c.id})") {{message}}
 
   
 

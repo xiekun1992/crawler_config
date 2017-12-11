@@ -4,16 +4,13 @@ var router = express.Router();
 var fs = require('fs');
 var { Script } = require('vm');
 var { JSDOM } = require('jsdom');
-var { Config } = require('../models/Configs');
-var Result = require('../models/Result');
+
+var { configDao } = require('../configs');
+var Result = require('../../utils/Result');
 
 let xpathContent = fs.readFileSync('./client/public/libs/xpath/xpath.js',{encoding: 'utf8'});
 router.get('/', function(req, res, next){
-  Config.findOne({
-    where: {
-      id: req.query.documentId
-    }
-  }).then(data=>{
+  configDao.findOne(req.query.documentId).then(data=>{
     // extract node's xpath by nodeId
     let dom = new JSDOM(data.html, {
       runScripts: 'outside-only'
