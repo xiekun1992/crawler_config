@@ -1,12 +1,12 @@
 var { Rule, sequelize } = require('./model');
 
-function batchCreateByDocumentId(documentId, rules){
+function batchCreateByConfigId(configId, rules){
   let promiseArr = [];
   return sequelize.transaction(t=>{
     for(let rule of rules){
       promiseArr.push(Rule.create({
         rule,
-        configId: documentId,
+        configId,
         isDelete: 0
       }, {
         transaction: t
@@ -24,6 +24,6 @@ function findAllByConfigId(configId){
 }
 
 module.exports = {
-	batchCreateByDocumentId,
+	batchCreateByConfigId,
 	findAllByConfigId
 }

@@ -1,4 +1,4 @@
-const { sequelize, Sequelize} = require('../../utils/DBUtil');
+const { sequelize, Sequelize} = require('../../utils').DBUtil;
 const Config = sequelize.define('config', {
 	url: {
 		type: Sequelize.STRING

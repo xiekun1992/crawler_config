@@ -1,7 +1,4 @@
-const controller = require('./controller');
-// const dao = require('./dao');
-
 module.exports = {
-	nodeController: controller
+	nodeController: require('./controller')
 	// configDao: dao
 }

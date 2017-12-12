@@ -1,9 +1,5 @@
-const controller = require('./controller');
-const dao = require('./dao');
-const model = require('./model');
-
 module.exports = {
-	ruleController: controller,
-	ruleDao: dao,
-	ruleModel: model
+	ruleController: require('./controller'),
+	ruleDao: require('./dao'),
+	ruleModel: require('./model')
 }

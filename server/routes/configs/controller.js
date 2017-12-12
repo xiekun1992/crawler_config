@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var dao = require('./dao');
-var Result = require('../../utils/Result');
+var { Result } = require('../../utils');
 
 router.delete('/:id', (req, res, next)=>{
   dao.destroy(req.params.id).then(data=>{

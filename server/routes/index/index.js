@@ -1,14 +1,13 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
 
-var { configDao } = require('../configs');
-var { ruleDao } = require('../rules');
-var { JSDOM } = require('jsdom');
+let { JSDOM } = require('jsdom');
+let { configDao } = require('../configs');
+let { ruleDao } = require('../rules');
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  var configs = [];
+router.get('/', (req, res, next) =>{
+  let configs = [];
   configDao.findAll().then(urls=>{
-      console.log(configs)
       res.render('index', { name: 'config index', configs: urls });
     });
 });
@@ -18,7 +17,7 @@ router.post('/crawl', async (req, res, next)=>{
   res.redirect('/');
 });
 
-router.get('/details', function(req, res, next){
+router.get('/details', (req, res, next)=>{
   configDao.findOne(req.query.id).then(data=>{
     let dom = new JSDOM(data.html);
     dom.window.document.body.innerHTML += `
@@ -28,7 +27,7 @@ router.get('/details', function(req, res, next){
   });
 });
 
-router.get('/config_detail', function(req, res, next){
+router.get('/config_detail', (req, res, next)=>{
   Promise.all([
       findAllByConfigId(req.query.id),
       configDao.findOne(req.query.id)

@@ -1,4 +1,4 @@
-const { sequelize, Sequelize } = require('../../utils/DBUtil');
+const { sequelize, Sequelize } = require('../../utils').DBUtil;
 const Rule = sequelize.define('rule', {
 	rule: {
 		type: Sequelize.STRING(1000)

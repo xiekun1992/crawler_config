@@ -1,15 +1,16 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
 
-var fs = require('fs');
-var { Script } = require('vm');
-var { JSDOM } = require('jsdom');
+let fs = require('fs');
+let { Script } = require('vm');
+let { JSDOM } = require('jsdom');
 
-var { configDao } = require('../configs');
-var Result = require('../../utils/Result');
+let { configDao } = require('../configs');
+let { Result } = require('../../utils');
 
 let xpathContent = fs.readFileSync('./client/public/libs/xpath/xpath.js',{encoding: 'utf8'});
-router.get('/', function(req, res, next){
+
+router.get('/', (req, res, next)=>{
   configDao.findOne(req.query.documentId).then(data=>{
     // extract node's xpath by nodeId
     let dom = new JSDOM(data.html, {
@@ -18,6 +19,7 @@ router.get('/', function(req, res, next){
     let { document } = dom.window;
     const script = new Script(xpathContent);
     dom.runVMScript(script);
+
     let element = document.querySelector(`[data-node-id="${req.query.nodeId}"]`);
     let similarElements = dom.window._xpath.getSimilarElements(element);
     let similarElementsId = [];
@@ -30,6 +32,7 @@ router.get('/', function(req, res, next){
       similarPath: dom.window._xpath.similarPath,
       similarElementsId
     }));
+    
   }).catch(err=>{
     res.json(new Result(50000, err));
   });
